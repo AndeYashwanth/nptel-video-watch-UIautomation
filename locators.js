@@ -5,6 +5,11 @@ var xpaths = {
   allSubUnits: ".//li[contains(@class,'subunit_')]//a[not(contains(text(), 'Feedback') or contains(text(), 'Assignment'))]"
 };
 
+/**
+ * Gets the Xpath for provided key and also substitutes placeholder values in xpath with provided values.
+ * @param {string} xpathKey 
+ * @param {Array|string} replacewith 
+ */
 module.exports.getXpath = (xpathKey, replacewith) => {
   if (typeof xpathKey == "undefined") {
     throw Error("Please provide xpath key");
@@ -23,7 +28,7 @@ module.exports.getXpath = (xpathKey, replacewith) => {
     replacewith = [replacewith];
   }
 
-  let index = replacewith.length - 1;
+  let index = replacewith.length - 1; // index is decremented
   let ans = "";
   for (let word of str.split(/(\$\w+?\$)/g)) {
     if (word.startsWith("$") && word.endsWith("$")) {
